@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Monthsary Honey ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+    background: linear-gradient(-45deg, #ff4e50, #ff758c, #ff7eb3, #ff4e50);
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
+    color: white;
+    text-align: center;
+}
+
+@keyframes gradient {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+.container {
+    position: relative;
+    top: 8vh;
+    padding: 20px;
+    animation: fadeIn 3s ease;
+    z-index: 2;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(30px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+h1 {
+    font-size: 38px;
+}
+
+.letter {
+    max-width: 700px;
+    margin: auto;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-top: 20px;
+}
+
+.month-message {
+    margin-top: 30px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+    <source src="YOUR-SONG.mp3" type="audio/mpeg">
+</audio>
+
+<canvas id="fireworks"></canvas>
+
+<div class="container">
+    <h1>Happy Monthsary & Happy Valentine’s Day Honey ❤️</h1>
+
+    <div class="letter">
+        My Honey Dianna,
+
+        Every 14th of the month reminds me how blessed I am to have you.
+        I love you more than words can ever explain. You are my peace,
+        my comfort, my happiness, and the best part of my life.
+
+        I’m sorry if sometimes I fail as a boyfriend.
+        I’m sorry if there are moments I feel like I’m not enough.
+        Sometimes I see other couples and I overthink.
+        I feel like I can’t always afford everything that could make you smile bigger.
+
+        But please know this, Honey —
+        you are never worthless. Not even close.
+        The only one fighting negative thoughts is me.
+
+        I am trying my best every single day to grow,
+        to become better, to build a future where I can give you the life you deserve.
+
+        Even if I don’t always have much,
+        my love for you is real, loyal, and endless.
+
+        Every 14th.
+        Every Valentine’s Day.
+        Every single day.
+
+        I choose you, Dianna.
+        I love you so much, Honey ❤️
+    </div>
+
+    <div class="month-message">
+        I will love you every 14th of every month, forever 💕
+    </div>
+</div>
+
+<script>
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+function createFirework() {
+    const x = Math.random() * canvas.width;
+    const y = Math.random() * canvas.height / 2;
+    const colors = ["#ff4e50", "#ff758c", "#ffffff", "#ffd700"];
+    
+    for (let i = 0; i < 80; i++) {
+        particles.push({
+            x: x,
+            y: y,
+            radius: 2,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            speedX: (Math.random() - 0.5) * 6,
+            speedY: (Math.random() - 0.5) * 6,
+            alpha: 1
+        });
+    }
+}
+
+function animate() {
+    ctx.fillStyle = "rgba(0,0,0,0.1)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach((p, index) => {
+        p.x += p.speedX;
+        p.y += p.speedY;
+        p.alpha -= 0.01;
+
+        ctx.globalAlpha = p.alpha;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+
+        if (p.alpha <= 0) {
+            particles.splice(index, 1);
+        }
+    });
+
+    requestAnimationFrame(animate);
+}
+
+setInterval(createFirework, 1500);
+animate();
+</script>
+
+</body>
+</html>
